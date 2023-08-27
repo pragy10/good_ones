@@ -1,19 +1,9 @@
-'''while True:
-    # main program
-    while True:
-        answer = str(input('Run again? (y/n): '))
-        if answer in ('y', 'n'):
-            break
-        print("invalid input.")
-    if answer == 'y':
-        continue
-    else:
-        print("Goodbye")
-        break'''
+from scipy import optimize
+import numpy as np
+import matplotlib.pyplot as plt
 
-
-while True:
-    print('Hello there! \nI\'m here to find the roots of a given equation and plot its graph as well. \nWhat is the degree of your function?')
+def main():
+    print('Hello there, I\'m Rooty! \nI\'m here to find the roots of a given equation and plot its graph as well. \nWhat is the degree of your function?')
     n=int(input('1 (or) 2 (or) 3 --> '))
     if n in [1,2,3]:
         print('Alright! Now please specify the coefficients of the equation')
@@ -22,10 +12,10 @@ while True:
             a=int(input('a = '))
             b=int(input('b = '))
             c=int(input('c = '))
-            
+
             def eqn(x):
                 return a*x**2+b*x+c
-            
+
             x=np.linspace(-10,10,100)
             myroot=optimize.root(eqn,[-2,5])
             plt.plot(x,eqn(x))
@@ -33,18 +23,19 @@ while True:
             plt.axhline(0,color='k',lw=1)
             plt.axvline(0,color='k',lw=1)
             plt.grid(True)
-            
+            plt.show()
+
             print('The roots of the equation are')
             print(myroot.x)
-            
+
         elif n==1:
             print('ax + b')
             a=int(input('a = '))
             b=int(input('b = '))
-            
+
             def eqn(x):
                 return a*x + b
-            
+
             x=np.linspace(-10,10,100)
             myroot=optimize.root(eqn,[-2])
             plt.plot(x,eqn(x))
@@ -52,20 +43,21 @@ while True:
             plt.axhline(0,color='k',lw=1)
             plt.axvline(0,color='k',lw=1)
             plt.grid(True)
-        
+            plt.show()
+
             print('The root of the equation is')
             print(myroot.x)
-        
+
         else:
             print('ax^3 + bx^2 + cx + d')
             a=int(input('a = '))
             b=int(input('b = '))
             c=int(input('c = '))
             d=int(input('d = '))
-        
+
             def eqn(x):
                 return a*x**3+b*x**2+c*x+d
-        
+
             x=np.linspace(-10,10,100)
             myroot=optimize.root(eqn,[-2,5,3])
             plt.plot(x,eqn(x))
@@ -73,19 +65,17 @@ while True:
             plt.axhline(0,color='k',lw=1)
             plt.axvline(0,color='k',lw=1)
             plt.grid(True)
-        
+            plt.show()
+
             print('The roots of the equation are')
             print(myroot.x)
-    while True:
-        print('Sorry, I do not support any other degrees! :(')
-        print('But would you like to find out for 1, 2 or 3 degree functions?')
-        j=input('Yes[y] (or) No[n] --> ')
-        if j in ['y','n']:
-            break
-        print('Invalid')
-    if j=='y':
-        print('--------------------------------------------------------')
-        continue
     else:
-        print('Goodbye! Have a nice day!')
-        break
+        print('Sorry, I do not support any other degrees! :(')
+
+main()
+
+j=input('Would you like to restart? \nYes[y] (or) No[n] --> ')
+if j=='y':
+    main()
+else:
+    print('Goodbye! Hope we meet soon!')
