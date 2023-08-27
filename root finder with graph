@@ -1,60 +1,77 @@
-from scipy import optimize
-import numpy as np
-import matplotlib.pyplot as plt
-
-print('Hello there! What is the degree of your function?')
-n=int(input('1 (or) 2 (or) 3:'))
-if n in [1,2,3]:
-    print('Alright! Now please specify the coefficients of the equation')
-    if n==2:
-        print('ax^2 + bx + c')
-        a=int(input('a = '))
-        b=int(input('b = '))
-        c=int(input('c = '))
+while True:
+    print('Hello there! \nI\'m here to find the roots of a given equation and plot its graph as well. \nWhat is the degree of your function?')
+    n=int(input('1 (or) 2 (or) 3 --> '))
+    if n in [1,2,3]:
+        print('Alright! Now please specify the coefficients of the equation')
+        if n==2:
+            print('ax^2 + bx + c')
+            a=int(input('a = '))
+            b=int(input('b = '))
+            c=int(input('c = '))
+            
+            def eqn(x):
+                return a*x**2+b*x+c
+            
+            x=np.linspace(-10,10,100)
+            myroot=optimize.root(eqn,[-2,5])
+            plt.plot(x,eqn(x))
+            plt.plot(myroot.x,eqn(myroot.x),'o',ms=10)
+            plt.axhline(0,color='k',lw=1)
+            plt.axvline(0,color='k',lw=1)
+            plt.grid(True)
+            
+            print('The roots of the equation are')
+            print(myroot.x)
+            
+        elif n==1:
+            print('ax + b')
+            a=int(input('a = '))
+            b=int(input('b = '))
+            
+            def eqn(x):
+                return a*x + b
+            
+            x=np.linspace(-10,10,100)
+            myroot=optimize.root(eqn,[-2])
+            plt.plot(x,eqn(x))
+            plt.plot(myroot.x,eqn(myroot.x),'o',ms=10)
+            plt.axhline(0,color='k',lw=1)
+            plt.axvline(0,color='k',lw=1)
+            plt.grid(True)
         
-        x=np.linspace(-10,10,100)
-        y=a*x**2+b*x+c
-        plt.plot(x,y)
-        plt.grid(True)
+            print('The root of the equation is')
+            print(myroot.x)
         
-        def eqn(x):
-            return a*x**2+b*x+c
-        myroot=optimize.root(eqn,[-2,5])
-        print('The roots of the equation are')
-        print(myroot.x)
+        else:
+            print('ax^3 + bx^2 + cx + d')
+            a=int(input('a = '))
+            b=int(input('b = '))
+            c=int(input('c = '))
+            d=int(input('d = '))
         
-    elif n==1:
-        print('ax + b')
-        a=int(input('a = '))
-        b=int(input('b = '))
+            def eqn(x):
+                return a*x**3+b*x**2+c*x+d
         
-        x=np.linspace(-10,10,100)
-        y=a*x + b
-        plt.plot(x,y)
-        plt.grid(True)
+            x=np.linspace(-10,10,100)
+            myroot=optimize.root(eqn,[-2,5,3])
+            plt.plot(x,eqn(x))
+            plt.plot(myroot.x,eqn(myroot.x),'o',ms=10)
+            plt.axhline(0,color='k',lw=1)
+            plt.axvline(0,color='k',lw=1)
+            plt.grid(True)
         
-        def eqn(x):
-            return a*x + b
-        myroot=optimize.root(eqn,[-2])
-        print('The root of the equation is')
-        print(myroot.x)
-        
+            print('The roots of the equation are')
+            print(myroot.x)
+    while True:
+        print('Sorry, I do not support any other degrees! :(')
+        print('But would you like to find out for 1, 2 or 3 degree functions?')
+        j=input('Yes[y] (or) No[n] --> ')
+        if j in ['y','n']:
+            break
+        print('Invalid')
+    if j=='y':
+        print('--------------------------------------------------------')
+        continue
     else:
-        print('ax^3 + bx^2 + cx + d')
-        a=int(input('a = '))
-        b=int(input('b = '))
-        c=int(input('c = '))
-        d=int(input('d = '))
-        
-        x=np.linspace(-10,10,100)
-        y=a*x**3+b*x**2+c*x+d
-        plt.plot(x,y)
-        plt.grid(True)
-        
-        def eqn(x):
-            return a*x**3+b*x**2+c*x+d
-        myroot=optimize.root(eqn,[-2,5,3])
-        print('The roots of the equation are')
-        print(myroot.x)
-else:
-    print('Sorry, I do not support any other degrees! :(')
+        print('Goodbye! Have a nice day!')
+        break
