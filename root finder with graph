@@ -1,0 +1,60 @@
+from scipy import optimize
+import numpy as np
+import matplotlib.pyplot as plt
+
+print('Hello there! What is the degree of your function?')
+n=int(input('1 (or) 2 (or) 3:'))
+if n in [1,2,3]:
+    print('Alright! Now please specify the coefficients of the equation')
+    if n==2:
+        print('ax^2 + bx + c')
+        a=int(input('a = '))
+        b=int(input('b = '))
+        c=int(input('c = '))
+        
+        x=np.linspace(-10,10,100)
+        y=a*x**2+b*x+c
+        plt.plot(x,y)
+        plt.grid(True)
+        
+        def eqn(x):
+            return a*x**2+b*x+c
+        myroot=optimize.root(eqn,[-2,5])
+        print('The roots of the equation are')
+        print(myroot.x)
+        
+    elif n==1:
+        print('ax + b')
+        a=int(input('a = '))
+        b=int(input('b = '))
+        
+        x=np.linspace(-10,10,100)
+        y=a*x + b
+        plt.plot(x,y)
+        plt.grid(True)
+        
+        def eqn(x):
+            return a*x + b
+        myroot=optimize.root(eqn,[-2])
+        print('The root of the equation is')
+        print(myroot.x)
+        
+    else:
+        print('ax^3 + bx^2 + cx + d')
+        a=int(input('a = '))
+        b=int(input('b = '))
+        c=int(input('c = '))
+        d=int(input('d = '))
+        
+        x=np.linspace(-10,10,100)
+        y=a*x**3+b*x**2+c*x+d
+        plt.plot(x,y)
+        plt.grid(True)
+        
+        def eqn(x):
+            return a*x**3+b*x**2+c*x+d
+        myroot=optimize.root(eqn,[-2,5,3])
+        print('The roots of the equation are')
+        print(myroot.x)
+else:
+    print('Sorry, I do not support any other degrees! :(')
