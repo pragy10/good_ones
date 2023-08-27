@@ -2,8 +2,16 @@ from scipy import optimize
 import numpy as np
 import matplotlib.pyplot as plt
 
+def restart():
+    j=input('Would you like to restart? \nYes[y] (or) No[n] --> ')
+    if j=='y':
+        main()
+    else:
+        print('Goodbye! Hope we meet soon!')
+
+print('Hello there! \nI\'m Rooty, your personal math assistant. \nI can find solutions for 1, 2 and 3 degree linear variable equations')
 def main():
-    print('Hello there, I\'m Rooty! \nI\'m here to find the roots of a given equation and plot its graph as well. \nWhat is the degree of your function?')
+    print('What is the degree of the equation?')
     n=int(input('1 (or) 2 (or) 3 --> '))
     if n in [1,2,3]:
         print('Alright! Now please specify the coefficients of the equation')
@@ -71,11 +79,7 @@ def main():
             print(myroot.x)
     else:
         print('Sorry, I do not support any other degrees! :(')
+        restart()
 
 main()
-
-j=input('Would you like to restart? \nYes[y] (or) No[n] --> ')
-if j=='y':
-    main()
-else:
-    print('Goodbye! Hope we meet soon!')
+restart()
