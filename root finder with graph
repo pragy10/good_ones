@@ -2,6 +2,7 @@ from scipy import optimize
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def restart():
     j=input('Would you like to restart? \nYes[y] (or) No[n] --> ')
     if j=='y':
